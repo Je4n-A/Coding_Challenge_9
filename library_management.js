@@ -1,3 +1,5 @@
+// Create a Book Class 
+
 class Book {
     constructor(title, author, ISBN){
         this.title = title;
@@ -17,4 +19,26 @@ set isAvailable(status) {
     this.isAvailable = status;
 };
 
+};
+
+// Create a Section Class 
+
+class Section {
+    constructor(name, books,) {
+        this.name = name;
+        this.books = books
+    };
+
+    addBook(book) {
+        this.books.push(book);
+    };
+    
+    getAvailableBooks(){
+        return this.books.filter(book => book.isAvailable).length;
+    };
+    
+    listBooks(){
+        return this.books.map(book => book.getdetails().join('/n'));
+    };
+    
 };
