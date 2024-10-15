@@ -7,7 +7,7 @@ class Book {
         this.ISBN = ISBN;
         this.isAvailable = true;
     };
-getdetails() {
+getDetails() {
     return `Title: ${this.title},
             Author: ${this.author},
             ISBN: ${this.ISBN}`
@@ -24,7 +24,7 @@ set isAvailable(status) {
 // Create a Section Class 
 
 class Section {
-    constructor(name, books,) {
+    constructor(name, books = []) {
         this.name = name;
         this.books = books
     };
@@ -38,7 +38,11 @@ class Section {
     };
     
     listBooks(){
-        return this.books.map(book => book.getdetails().join('/n'));
+        return this.books.map(book => `${book.title} - ${book.isAvailable ? 'Available' : 'Not Available'}`).join('\n');
+    };
+//  Handle Books Borrowing and Returning
+    calculateTotalBooksAvailable(){
+        return this.books.filter(book => book.isAvailable).length;
     };
 
 };
@@ -91,3 +95,6 @@ class VIPPatron extends Patron {
     };
  };
 };
+
+
+
