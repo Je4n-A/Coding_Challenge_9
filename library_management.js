@@ -40,5 +40,35 @@ class Section {
     listBooks(){
         return this.books.map(book => book.getdetails().join('/n'));
     };
-    
+
+};
+
+// Create a Patron Class 
+
+class Patron {
+    constructor(name) {
+    this.name = name;
+    this.borrowedBooks = [];
+    };
+
+    borrowBook(book){
+        if (book.isAvailable) {
+            book.isAvailable = false;
+            this.borrowedBooks.push(book);
+            console.log(`${this.name} has borrowed "${book.title}"`);
+        } else {
+            console.log(`Sorry, "${book.title}" is currently not available.`);
+        };
+    };
+
+    returnBook(book){
+        const index = this.borrowedBooks.indexOf(book);
+        if (index !== -1) {
+            book.isAvailable = true;
+            this.borrowedBooks.splice(index, 1);
+            console.log(`${this.name} has returned "${book.title}"`);
+        } else {
+            console.log(`${this.name} does not have "${book.title}" borrowed.`);
+        };
+    };
 };
