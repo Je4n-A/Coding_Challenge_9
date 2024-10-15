@@ -72,3 +72,22 @@ class Patron {
         };
     };
 };
+
+// Create a VIPPatron Class that Inherits from Patron
+
+class VIPPatron extends Patron {
+ constructor(name) {
+    super(name);
+    this.priority = true;
+ };
+ borrowBook(book){
+
+    if(book.isAvailable){
+        book.isAvailable = false;
+        this.borrowBook.push(book);
+        console.log(`${this.name} (VIP) has borrowed book`);
+    } else {
+        console.log(`Sorry, "${book.title}" is currently not available.`);
+    };
+ };
+};
